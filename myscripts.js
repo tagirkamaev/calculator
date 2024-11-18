@@ -18,3 +18,8 @@ function multiply(a, b) {
 function divide(a, b) {
   return a / b;
 }
+
+// 2. Create variables for numbers and operator
+let number1;
+let number2;
+let operator;
