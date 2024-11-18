@@ -23,3 +23,16 @@ function divide(a, b) {
 let number1;
 let number2;
 let operator;
+
+// 3. Create a function that takes an operator and two numbers and then calls one of the above functions on the numbers.
+function operate(a, b, operator) {
+  if (operator === "+") {
+    add(a, b);
+  } else if (operator === "-") {
+    subtract(a, b);
+  } else if (operator === "*") {
+    multiply(a, b);
+  } else if (operator === "/") {
+    divide(a, b);
+  }
+}
