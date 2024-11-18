@@ -24,7 +24,8 @@ let number1;
 let number2;
 let operator;
 
-// 3. Create a function that takes an operator and two numbers and then calls one of the above functions on the numbers.
+// 3. Create a function that takes an operator and two numbers
+// and then calls one of the above functions on the numbers.
 function operate(a, b, operator) {
   if (operator === "+") {
     add(a, b);
@@ -52,4 +53,20 @@ document.querySelectorAll(".digit").forEach((button) => {
     display.textContent = userInput;
   });
 });
-// You should store the content of the display (the number) in a variable for use in the next step.
+
+// 6. Make calculator work
+// 6.1 Store the first and second numbers input by the user
+let firstInput = 0; // when the user clicks the operator button, the userInput is stored inside firstInput
+let secondInput = 0;
+
+// 6.1.1 Create an eventListener for operator buttons
+document.querySelectorAll(".operator").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    firstInput += parseInt(userInput);
+    userInput = "";
+    display.textContent = "0";
+    console.log(firstInput);
+  });
+});
+
+// 6.2 operate() on them when the user presses the = button
