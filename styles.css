@@ -64,6 +64,6 @@ body {
     color: white;
 }
 
-.button.zero {
+#zero {
     grid-column: span 2;
 }

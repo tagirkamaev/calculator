@@ -36,3 +36,20 @@ function operate(a, b, operator) {
     divide(a, b);
   }
 }
+
+// 5. Create the functions that populate the display when you click the digit buttons.
+// 5.1 Create a variable for storing users input
+let userInput = "";
+
+// 5.2 Create variable for display
+const display = document.querySelector(".display");
+
+// 5.3 Add event-listener for each button (with digit)
+document.querySelectorAll(".digit").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const buttonText = event.target.textContent;
+    userInput += buttonText;
+    display.textContent = userInput;
+  });
+});
+// You should store the content of the display (the number) in a variable for use in the next step.
