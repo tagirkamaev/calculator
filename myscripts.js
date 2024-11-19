@@ -96,3 +96,15 @@ equal.addEventListener("click", (event) => {
   let equalSignReslut = operate(lastInput, newInput, lastOperator);
   display.textContent = equalSignReslut;
 });
+
+const ac = document.querySelector(".clear");
+ac.addEventListener("click", (event) => {
+  lastOperator = null;
+  newOperator = null;
+  lastInput = null;
+  newInput = null;
+  result = null;
+  firstOperation = true;
+  display.textContent = 0;
+  userInput = "";
+});
