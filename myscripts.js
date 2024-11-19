@@ -20,21 +20,21 @@ function divide(a, b) {
 }
 
 // 2. Create variables for numbers and operator
-let number1;
-let number2;
-let operator;
+let firstInputConst = 0;
+let secondInputConst = 0;
+let currentOperator = null;
 
 // 3. Create a function that takes an operator and two numbers
 // and then calls one of the above functions on the numbers.
 function operate(a, b, operator) {
   if (operator === "+") {
-    add(a, b);
+    return add(a, b);
   } else if (operator === "-") {
-    subtract(a, b);
+    return subtract(a, b);
   } else if (operator === "*") {
-    multiply(a, b);
+    return multiply(a, b);
   } else if (operator === "/") {
-    divide(a, b);
+    return divide(a, b);
   }
 }
 
@@ -56,17 +56,29 @@ document.querySelectorAll(".digit").forEach((button) => {
 
 // 6. Make calculator work
 // 6.1 Store the first and second numbers input by the user
-let firstInput = 0; // when the user clicks the operator button, the userInput is stored inside firstInput
-let secondInput = 0;
 
 // 6.1.1 Create an eventListener for operator buttons
 document.querySelectorAll(".operator").forEach((button) => {
   button.addEventListener("click", (event) => {
-    firstInput += parseInt(userInput);
+    currentOperator = event.target.textContent;
+    // get first input
+    let firstInput = parseInt(userInput);
+    firstInputConst += firstInput;
     userInput = "";
     display.textContent = "0";
-    console.log(firstInput);
+    // console.log(firstInput);
   });
 });
 
 // 6.2 operate() on them when the user presses the = button
+const equal = document.querySelector(".equal");
+equal.addEventListener("click", (event) => {
+  let secondInput = parseInt(userInput);
+  // console.log(secondInput);
+  // console.log(firstInputConst);
+  // console.log(currentOperator);
+  secondInputConst = secondInput;
+  const result = operate(firstInputConst, secondInputConst, currentOperator);
+  console.log(result);
+  display.textContent = result;
+});
