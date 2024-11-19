@@ -20,9 +20,12 @@ function divide(a, b) {
 }
 
 // 2. Create variables for numbers and operator
-let firstInputConst = 0;
-let secondInputConst = 0;
-let currentOperator = null;
+let lastOperator = null;
+let newOperator = null;
+let lastInput = null;
+let newInput = null;
+let result = null;
+firstOperation = true;
 
 // 3. Create a function that takes an operator and two numbers
 // and then calls one of the above functions on the numbers.
@@ -56,29 +59,40 @@ document.querySelectorAll(".digit").forEach((button) => {
 
 // 6. Make calculator work
 // 6.1 Store the first and second numbers input by the user
-
-// 6.1.1 Create an eventListener for operator buttons
 document.querySelectorAll(".operator").forEach((button) => {
   button.addEventListener("click", (event) => {
-    currentOperator = event.target.textContent;
-    // get first input
-    let firstInput = parseInt(userInput);
-    firstInputConst += firstInput;
-    userInput = "";
-    display.textContent = "0";
-    // console.log(firstInput);
+    if (firstOperation) {
+      lastOperator = event.target.textContent;
+      firstOperation = false;
+      // update lastInput to store last input
+      if (lastInput !== null) {
+        newInput = parseInt(userInput);
+        result = operate(lastInput, newInput, lastOperator);
+        lastInput = result;
+        userInput = "";
+        display.textContent = result;
+        return;
+      }
+      lastInput = parseInt(userInput);
+      userInput = "";
+      display.textContent = lastInput;
+    } else {
+      newOperator = event.target.textContent;
+      newInput = parseInt(userInput);
+      result = operate(lastInput, newInput, lastOperator);
+      lastInput = result;
+      userInput = "";
+      display.textContent = result;
+      lastOperator = newOperator;
+      return;
+    }
   });
 });
 
 // 6.2 operate() on them when the user presses the = button
 const equal = document.querySelector(".equal");
 equal.addEventListener("click", (event) => {
-  let secondInput = parseInt(userInput);
-  // console.log(secondInput);
-  // console.log(firstInputConst);
-  // console.log(currentOperator);
-  secondInputConst = secondInput;
-  const result = operate(firstInputConst, secondInputConst, currentOperator);
-  console.log(result);
-  display.textContent = result;
+  newInput = parseInt(userInput);
+  let equalSignReslut = operate(lastInput, newInput, lastOperator);
+  display.textContent = equalSignReslut;
 });
