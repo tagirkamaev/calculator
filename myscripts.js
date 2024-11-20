@@ -92,9 +92,20 @@ document.querySelectorAll(".operator").forEach((button) => {
 // 6.2 operate() on them when the user presses the = button
 const equal = document.querySelector(".equal");
 equal.addEventListener("click", (event) => {
-  newInput = parseInt(userInput);
-  let equalSignReslut = operate(lastInput, newInput, lastOperator);
-  display.textContent = equalSignReslut;
+  if (firstOperation) {
+    if (userInput !== "") {
+      display.textContent = userInput;
+      return;
+    } else {
+      display.textContent = 0;
+      return;
+    }
+  } else {
+    newInput = parseInt(userInput);
+    let equalSignReslut = operate(lastInput, newInput, lastOperator);
+    display.textContent = equalSignReslut;
+    return;
+  }
 });
 
 const ac = document.querySelector(".clear");
